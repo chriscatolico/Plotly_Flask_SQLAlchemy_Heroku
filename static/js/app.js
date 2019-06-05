@@ -32,7 +32,9 @@ function buildCharts(sample) {
       y: data.sample_values,
       mode: 'markers',
       marker: {
-        size: data.sample_values
+        size: data.sample_values,
+        color: data.otu_ids,
+        colorscale: 'Blackbody'
       },
       text: data.otu_labels,
     };
@@ -53,14 +55,14 @@ function buildCharts(sample) {
     var data2 = [{
       values: data.sample_values.slice(0, 10),
       labels: data.otu_ids.slice(0, 10),
-      hoverinfo: 'label+percent+name',
-      textinfo: 'none',
+      hovertext: data.otu_labels.slice(0, 10),
+      hoverinfo: 'hovertext',
       type: 'pie'
     }];
   
     var layout1 = {
-      height: 1000,
-      width: 1000
+      height: 500,
+      width: 800
     };
   
     Plotly.newPlot('pie', data2, layout1);
